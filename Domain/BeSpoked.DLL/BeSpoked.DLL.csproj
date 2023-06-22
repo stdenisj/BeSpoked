@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>BeSpoked</RootNamespace>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\BeSpoked.Db\BeSpoked.Db.csproj" />
+      <ProjectReference Include="..\..\Infustructure\BeSpoked.Db\BeSpoked.Db.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Common\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.8" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>BeSpoked</RootNamespace>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+
+
+
+    <ItemGroup>
+
+
+
+
+
+
+
+
+      <PackageReference Include="FluentValidation" Version="11.5.2" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </ItemGroup>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</Project>
