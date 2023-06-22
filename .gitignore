@@ -228,7 +228,3 @@ _Pvt_Extensions
 logs/
 node_modules/
 dist/
-
-*.sqlite3
-*.db
-*.sqlite
