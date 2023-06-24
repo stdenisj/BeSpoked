@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Infustructure\BeSpoked.Db\BeSpoked.Db.csproj" />
+      <ProjectReference Include="..\..\Infastructure\BeSpoked.Db\BeSpoked.Db.csproj" />
     </ItemGroup>
 
     <ItemGroup>

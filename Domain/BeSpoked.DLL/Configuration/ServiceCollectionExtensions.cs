@@ -18,10 +18,9 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddDomain(this IServiceCollection services, IConfiguration configuration)
     {
         var dbConnectionString = configuration.GetConnectionString("DefaultConnectionString");
-
-        services.AddDbContext<BeSpokedDbContext>(options =>
+        services.AddDbContext<BeSpokedDbContext>(o =>
         {
-            options.UseSqlite(dbConnectionString);
+            o.UseSqlite(dbConnectionString);
         });
         
         // Add customers
@@ -39,6 +38,7 @@ public static class ServiceCollectionExtensions
         // Add SalesTeam
         services.AddScoped<ISalesPersonService, SalesPersonService>();
         services.AddScoped<ISalesPersonRepository, SalesPersonRepository>();
+        services.AddScoped<ISalesManager, SalesManager>();
         
         return services;
     }
