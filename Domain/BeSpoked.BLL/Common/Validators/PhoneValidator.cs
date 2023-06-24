@@ -5,7 +5,7 @@ namespace BeSpoked.Common.Validators;
 
 public class PhoneNumberValidator: AbstractValidator<string>
 {
-    private static readonly Regex USPhoneNumberStandardFormat = new ("^[+]1[0-9]{10}$", RegexOptions.Compiled);
+    private static readonly Regex USPhoneNumberStandardFormat = new ("^[0-9]{10}$", RegexOptions.Compiled);
 
     public PhoneNumberValidator()
     {
