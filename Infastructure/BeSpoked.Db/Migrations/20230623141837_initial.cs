@@ -34,10 +34,10 @@ namespace BeSpoked.Db.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Manufacturer = table.Column<string>(type: "TEXT", nullable: false),
                     Style = table.Column<int>(type: "INTEGER", nullable: false),
-                    PurchasePrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    SalePrice = table.Column<decimal>(type: "TEXT", nullable: false),
+                    PurchasePrice = table.Column<decimal>(type: "TEXT", precision: 19, scale: 2, nullable: false),
+                    SalePrice = table.Column<decimal>(type: "TEXT", precision: 19, scale: 2, nullable: false),
                     QuantityOnHand = table.Column<int>(type: "INTEGER", nullable: false),
-                    CommissionPercentage = table.Column<decimal>(type: "TEXT", nullable: false)
+                    CommissionPercentage = table.Column<decimal>(type: "TEXT", precision: 1, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,20 +78,17 @@ namespace BeSpoked.Db.Migrations
                         name: "FK_Sales_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Sales_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Sales_SalesTeam_SalesPersonId",
                         column: x => x.SalesPersonId,
                         principalTable: "SalesTeam",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

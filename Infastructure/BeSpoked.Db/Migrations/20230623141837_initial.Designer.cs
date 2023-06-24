@@ -3,6 +3,7 @@ using System;
 using BeSpoked.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeSpoked.Db.Migrations
 {
     [DbContext(typeof(BeSpokedDbContext))]
-    partial class BeSpokedDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230623141837_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
@@ -86,10 +89,6 @@ namespace BeSpoked.Db.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("CommissionAmount")
-                        .HasPrecision(19, 2)
-                        .HasColumnType("TEXT");
-
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("TEXT");
 
@@ -100,9 +99,6 @@ namespace BeSpoked.Db.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("SalesPersonId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("SalesPrice")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

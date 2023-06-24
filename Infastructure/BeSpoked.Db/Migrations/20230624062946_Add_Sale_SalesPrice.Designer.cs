@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeSpoked.Db.Migrations
 {
     [DbContext(typeof(BeSpokedDbContext))]
-    [Migration("20230622203058_Add_Keys")]
-    partial class Add_Keys
+    [Migration("20230624062946_Add_Sale_SalesPrice")]
+    partial class Add_Sale_SalesPrice
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,7 +43,7 @@ namespace BeSpoked.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("BeSpoked.Products.Entities.Product", b =>
@@ -53,6 +53,7 @@ namespace BeSpoked.Db.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("CommissionPercentage")
+                        .HasPrecision(1, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Manufacturer")
@@ -64,12 +65,14 @@ namespace BeSpoked.Db.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("PurchasePrice")
+                        .HasPrecision(19, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("QuantityOnHand")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("SalePrice")
+                        .HasPrecision(19, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Style")
@@ -77,13 +80,17 @@ namespace BeSpoked.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("BeSpoked.Sales.Entities.Sale", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("CommissionAmount")
+                        .HasPrecision(19, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("CustomerId")
@@ -98,6 +105,9 @@ namespace BeSpoked.Db.Migrations
                     b.Property<Guid>("SalesPersonId")
                         .HasColumnType("TEXT");
 
+                    b.Property<decimal>("SalesPrice")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex(new[] { "CustomerId" }, "IX_Sales_CustomerId");
@@ -106,7 +116,7 @@ namespace BeSpoked.Db.Migrations
 
                     b.HasIndex(new[] { "SalesPersonId" }, "IX_Sales_SalesPersonId");
 
-                    b.ToTable("Sales");
+                    b.ToTable("Sales", (string)null);
                 });
 
             modelBuilder.Entity("BeSpoked.SalesTeam.Entities.SalesPerson", b =>

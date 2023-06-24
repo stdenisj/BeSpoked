@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeSpoked.Db.Migrations
 {
     [DbContext(typeof(BeSpokedDbContext))]
-    [Migration("20230622195056_initial")]
-    partial class initial
+    [Migration("20230624035527_Add_Sale_CommissionAmount")]
+    partial class Add_Sale_CommissionAmount
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,7 +43,7 @@ namespace BeSpoked.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("BeSpoked.Products.Entities.Product", b =>
@@ -53,6 +53,7 @@ namespace BeSpoked.Db.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("CommissionPercentage")
+                        .HasPrecision(1, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Manufacturer")
@@ -64,12 +65,14 @@ namespace BeSpoked.Db.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("PurchasePrice")
+                        .HasPrecision(19, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("QuantityOnHand")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("SalePrice")
+                        .HasPrecision(19, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Style")
@@ -77,13 +80,17 @@ namespace BeSpoked.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("BeSpoked.Sales.Entities.Sale", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("CommissionAmount")
+                        .HasPrecision(19, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("CustomerId")
@@ -100,13 +107,13 @@ namespace BeSpoked.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex(new[] { "CustomerId" }, "IX_Sales_CustomerId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex(new[] { "ProductId" }, "IX_Sales_ProductId");
 
-                    b.HasIndex("SalesPersonId");
+                    b.HasIndex(new[] { "SalesPersonId" }, "IX_Sales_SalesPersonId");
 
-                    b.ToTable("Sales");
+                    b.ToTable("Sales", (string)null);
                 });
 
             modelBuilder.Entity("BeSpoked.SalesTeam.Entities.SalesPerson", b =>
@@ -139,7 +146,7 @@ namespace BeSpoked.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SalesTeam");
+                    b.ToTable("SalesTeam", (string)null);
                 });
 
             modelBuilder.Entity("BeSpoked.Sales.Entities.Sale", b =>
@@ -147,19 +154,19 @@ namespace BeSpoked.Db.Migrations
                     b.HasOne("BeSpoked.Customers.Entities.Customer", "Customer")
                         .WithMany("Sales")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("BeSpoked.Products.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("Sales")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("BeSpoked.SalesTeam.Entities.SalesPerson", "SalesPerson")
                         .WithMany("Sales")
                         .HasForeignKey("SalesPersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -170,6 +177,11 @@ namespace BeSpoked.Db.Migrations
                 });
 
             modelBuilder.Entity("BeSpoked.Customers.Entities.Customer", b =>
+                {
+                    b.Navigation("Sales");
+                });
+
+            modelBuilder.Entity("BeSpoked.Products.Entities.Product", b =>
                 {
                     b.Navigation("Sales");
                 });
