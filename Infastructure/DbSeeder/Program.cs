@@ -7,16 +7,13 @@ Console.WriteLine("Registering Services");
 var services = GetServices();
 
 Console.WriteLine("Seeding Products");
-await services.GetRequiredService<SeedProducts>().Run();
+await services.GetRequiredService<SeedDb>().Run();
 
 ServiceProvider GetServices()
 {
     var services = new ServiceCollection();
-
-    services.AddDbContext<BeSpokedDbContext>(options =>
-    {
-        options.UseSqlite("Data Source=../BeSpoked.Db/sqlite.db");
-    });
-    services.AddScoped<SeedProducts>();
+    services.AddSqlite<BeSpokedDbContext>("ConnectionString");
+    
+    services.AddScoped<SeedDb>();
     return services.BuildServiceProvider();
 }
