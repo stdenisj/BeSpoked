@@ -8,7 +8,7 @@ public class BeSpokedDbContextBuilder: IDesignTimeDbContextFactory<BeSpokedDbCon
     public BeSpokedDbContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<BeSpokedDbContext>();
-        optionsBuilder.UseSqlite("Data Source=sqlite.db");
+        optionsBuilder.UseSqlite("ConnectionString");
 
         return new BeSpokedDbContext(optionsBuilder.Options);
     }

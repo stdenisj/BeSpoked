@@ -8,7 +8,11 @@ public class SaleSchema: IEntityTypeConfiguration<Sale>
 {
     public void Configure(EntityTypeBuilder<Sale> entity)
     {
+        entity.ToTable("Sales");
+
         entity.HasKey(e => e.Id);
+        
+        entity.Property(e => e.CommissionAmount).HasPrecision(19, 2);
 
         entity.HasIndex(e => e.CustomerId, "IX_Sales_CustomerId");
 

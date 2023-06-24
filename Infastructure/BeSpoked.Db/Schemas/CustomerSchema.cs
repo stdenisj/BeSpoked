@@ -8,6 +8,8 @@ public class CustomerSchema : IEntityTypeConfiguration<Customer>
 {
     public void Configure(EntityTypeBuilder<Customer> entity)
     {
+        entity.ToTable("Customers");
+
         entity.HasKey(e => e.Id);
     }
 }
