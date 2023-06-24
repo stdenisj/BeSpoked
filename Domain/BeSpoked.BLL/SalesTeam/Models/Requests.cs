@@ -11,12 +11,10 @@ public record CreateSalesPersonRequest : ICreateEntityRequest
     public required string Manager { get; set; }
 };
 
-public record UpdateSalesPersonRequest : IUpdateEntityRequest
-{
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    //public Address
-    public string? Phone { get; set; }
-    public string? Manager { get; set; }
-    public DateTime? TerminationDate { get; set; }
-};
+public record UpdateSalesPersonRequest(
+    string? FirstName,
+    string? LastName,
+    string? Phone,
+    string? Manager,
+    DateTime? TerminationDate
+) : IUpdateEntityRequest;

@@ -12,6 +12,6 @@ public record SalesPerson : Entity
     public DateTime StartDate { get; set; }
     public DateTime? TerminationDate { get; set; }
     public required string Manager { get; set; }
-    
+    public string FullName => $"{FirstName} {LastName}";
     public virtual ICollection<Sale> Sales { get; set; } = new HashSet<Sale>();
 };

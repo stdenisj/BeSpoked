@@ -23,16 +23,16 @@ public class SalesPersonService : EntityServiceBase<SalesPerson, CreateSalesPers
 
     protected override SalesPerson ApplyUpdate(SalesPerson entity, UpdateSalesPersonRequest updateRequest)
     {
-        if (string.IsNullOrEmpty(updateRequest.FirstName))
+        if (!string.IsNullOrEmpty(updateRequest.FirstName))
             entity.FirstName = updateRequest.FirstName!;
         
-        if (string.IsNullOrEmpty(updateRequest.LastName))
+        if (!string.IsNullOrEmpty(updateRequest.LastName))
             entity.LastName = updateRequest.LastName!;
         
-        if (string.IsNullOrEmpty(updateRequest.Phone))
+        if (!string.IsNullOrEmpty(updateRequest.Phone))
             entity.Phone = updateRequest.Phone!;
         
-        if (string.IsNullOrEmpty(updateRequest.Manager))
+        if (!string.IsNullOrEmpty(updateRequest.Manager))
             entity.Manager = updateRequest.Manager!;
 
         if (updateRequest.TerminationDate != null)
