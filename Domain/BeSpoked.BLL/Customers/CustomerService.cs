@@ -22,13 +22,13 @@ public class CustomerService : EntityServiceBase<Customer, CreateCustomerRequest
 
     protected override Customer ApplyUpdate(Customer entity, UpdateCustomerRequest updateRequest)
     {
-        if (string.IsNullOrEmpty(updateRequest.FirstName))
+        if (!string.IsNullOrEmpty(updateRequest.FirstName))
             entity.FirstName = updateRequest.FirstName!;
         
-        if (string.IsNullOrEmpty(updateRequest.LastName))
+        if (!string.IsNullOrEmpty(updateRequest.LastName))
             entity.LastName = updateRequest.LastName!;
         
-        if (string.IsNullOrEmpty(updateRequest.Phone))
+        if (!string.IsNullOrEmpty(updateRequest.Phone))
             entity.Phone = updateRequest.Phone!;
         
         return entity;

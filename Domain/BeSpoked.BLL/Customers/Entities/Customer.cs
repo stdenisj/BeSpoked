@@ -10,6 +10,6 @@ public record Customer : Entity
     //public Address
     public required string Phone { get; set; }
     public DateTime StartDate { get; set; }
-    
+    public string FullName => $"{FirstName} {LastName}";
     public virtual ICollection<Sale> Sales { get; set; } = new HashSet<Sale>();
 };
