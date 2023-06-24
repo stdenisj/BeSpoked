@@ -9,9 +9,9 @@ public class ProductValidator : AbstractValidator<Product>
     {
         RuleFor(e => e.Name).NotEmpty().WithMessage("Name cannot be blank");
         RuleFor(e => e.Manufacturer).NotEmpty().WithMessage("Manufacturer cannot be blank");
-        RuleFor(e => e.SalePrice).GreaterThanOrEqualTo(0);
-        RuleFor(e => e.PurchasePrice).GreaterThanOrEqualTo(0);
-        RuleFor(e => e.CommissionPercentage).GreaterThanOrEqualTo(0);
+        RuleFor(e => e.SalePrice).GreaterThanOrEqualTo(0M);
+        RuleFor(e => e.PurchasePrice).GreaterThanOrEqualTo(0M);
+        RuleFor(e => e.CommissionPercentage).GreaterThanOrEqualTo(0.05M);
         RuleFor(e => e.QuantityOnHand).GreaterThanOrEqualTo(0);
     }
 }
