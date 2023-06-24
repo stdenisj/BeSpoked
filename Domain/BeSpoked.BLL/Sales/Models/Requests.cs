@@ -10,6 +10,8 @@ public sealed record CreateSaleRequest : ICreateEntityRequest
     public required Guid SalesPersonId { get; set; }
     public required Guid CustomerId { get; set; }
     public required Guid ProductId { get; set; }
+    public required decimal CommissionAmount { get; set; }
+    public required decimal SalesPrice { get; set; }
 }
 
 public sealed record UpdateSaleRequest : IUpdateEntityRequest;

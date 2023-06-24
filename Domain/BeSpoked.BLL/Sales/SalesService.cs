@@ -8,8 +8,11 @@ namespace BeSpoked.Sales;
 
 public class SalesService : EntityServiceBase<Sale, CreateSaleRequest, UpdateSaleRequest, SaleValidator>, ISalesService
 {
+    private readonly ISalesRepository _repository;
+    
     public SalesService(ISalesRepository repository) : base(repository)
     {
+        _repository = repository;
     }
 
     protected override Sale CreateFromRequest(CreateSaleRequest createRequest)
@@ -20,10 +23,18 @@ public class SalesService : EntityServiceBase<Sale, CreateSaleRequest, UpdateSal
             SalesPersonId = createRequest.SalesPersonId,
             ProductId = createRequest.ProductId,
             SalesDate = DateTime.Now,
+            CommissionAmount = createRequest.CommissionAmount,
+            SalesPrice = createRequest.SalesPrice
         };
 
     protected override Sale ApplyUpdate(Sale entity, UpdateSaleRequest updateRequest)
     {
         throw new NotImplementedException();
     }
+
+    public Task<IEnumerable<SaleSummary>> GetSalesSummaries(CancellationToken cancellationToken = default)
+        => _repository.GetSalesSummaries(cancellationToken);
+
+    public Task<SaleSummary> GetSaleSummary(Guid id, CancellationToken cancellationToken = default)
+        => _repository.GetSaleSummary(id, cancellationToken);
 }
