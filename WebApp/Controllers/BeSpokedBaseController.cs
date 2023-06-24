@@ -1,8 +1,10 @@
+using BeSpoked.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApp.Models;
 
-namespace WebApp.Controllers
+namespace BeSpoked.Api.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     public abstract class BeSpokedBaseController : ControllerBase
     {
